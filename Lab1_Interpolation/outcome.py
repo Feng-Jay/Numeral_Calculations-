@@ -38,7 +38,7 @@ if __name__ == "__main__":
     # print(x_set)
     # 获得所有插值点
     # 准备构造插值函数
-    vander=Vandermonde_Martix(n,x_set)
+    vander=Vandermonde_Martix(n,x_set,y_set)
 
 
 # print(a)
