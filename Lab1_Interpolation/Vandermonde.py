@@ -19,18 +19,26 @@ class Vandermonde_Martix :
         # print('x: \n', self.x)
         # print("y: \n", self.y)
     def calculation(self):
-        print("self.martix: \n",self.martix)
+        # print("self.martix: \n",self.martix)
         coefficient = np.array(self.martix)
-        print("coefficient: \n",coefficient)
+        # print("coefficient: \n",coefficient)
         # a = np.array([[1, 2], [3, 5]]) 
         # print("a:\n",a)
-        print("self's y: \n",self.y)
+        # print("self's y: \n",self.y)
         y = np.array(self.y)
-        print("y: \n", y)
+        #print("y: \n", y)
         self.A = np.linalg.solve(coefficient,y)
         print(self.A)
 
-    # def function(self,x):
-        # for i in range(len(x)):
-
+    def function(self,x):
+        y=[]
+        # x is the set of test dots.
+        for i in range(len(x)):
+            # for each test value
+            outcome = 0
+            for j in range(self.xn):
+                # 这里是每个函数值
+                outcome = outcome + self.A[j]*(x[i]**j)
+            y.append(outcome)
+        return y
 
