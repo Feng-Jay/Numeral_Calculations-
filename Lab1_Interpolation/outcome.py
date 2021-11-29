@@ -1,5 +1,6 @@
 from Vandermonde import Vandermonde_Martix
 from Lagrange import Lagrange
+from Newton import Newton
 import numpy as np
 import math
 import random
@@ -52,8 +53,9 @@ if __name__ == "__main__":
     for i in range(m):
         standard.append(fx(test_set[i],args))
     print("fx=\n",standard)
-    lagrange = Lagrange(x_set, y_set)
-    lagrange.calculation(test_set)
-
+    # lagrange = Lagrange(x_set, y_set)
+    # lagrange.calculation(test_set)
+    newton = Newton(x_set,y_set,pace)
+    newton.calculation(test_set)
 # print(a)1
 # print(args)
