@@ -1,4 +1,5 @@
 from Vandermonde import Vandermonde_Martix
+from Lagrange import Lagrange
 import numpy as np
 import math
 import random
@@ -42,15 +43,17 @@ if __name__ == "__main__":
         temp = random.uniform(a[0],a[1])
         test_set.append(temp)
     # 准备构造插值函数
-    vander=Vandermonde_Martix(n,x_set,y_set)
-    print("cal")
-    vander.calculation()
-    outcome1 = vander.function(test_set)
-    print("outcome1:\n",outcome1)
+    # vander=Vandermonde_Martix(n,x_set,y_set)
+    # print("cal")
+    # vander.calculation()
+    # outcome1 = vander.function(test_set)
+    # print("outcome1:\n",outcome1)
     standard = []
     for i in range(m):
         standard.append(fx(test_set[i],args))
     print("fx=\n",standard)
+    lagrange = Lagrange(x_set, y_set)
+    lagrange.calculation(test_set)
 
-# print(a)
+# print(a)1
 # print(args)
