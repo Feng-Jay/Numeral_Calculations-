@@ -13,4 +13,8 @@ class Hermitian :
         for i in range(len(x)):
             temp = int((x[i]-left)//pace)
             outcome = ((x[i]-self.x[temp+1])/(self.x[temp]-self.x[temp+1]))**2 * ( 1 + ( 2 * (x[i]-self.x[temp]) / (self.x[temp+1]-self.x[temp]) )) * self.y[temp]\
-                      + 
+                      + ((x[i]-self.x[temp])/(self.x[temp+1]-self.x[temp]))**2 * ( 1 + ( 2 * (x[i]-self.x[temp+1]) / (self.x[temp]-self.x[temp+1]) )) * self.y[temp+1]\
+                      + ((x[i]-self.x[temp+1])/(self.x[temp]-self.x[temp+1]))**2 * (x[i] - self.x[temp]) * d_set[temp]\
+                      + ((x[i]-self.x[temp])/(self.x[temp+1]-self.x[temp]))**2 * (x[i] - self.x[temp+1]) * d_set[temp+1]
+            self.outcome.append(outcome)
+        print(self.outcome)

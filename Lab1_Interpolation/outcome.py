@@ -2,6 +2,7 @@ from Vandermonde import Vandermonde_Martix
 from Lagrange import Lagrange
 from Newton import Newton
 from piece_linear import piece_linear
+from Hermitian import Hermitian
 import numpy as np
 import math
 import random
@@ -27,6 +28,7 @@ def dfx(x,*args):
     f = arg[3]
 
     fx = c*d * np.cos(d * x) - e * f * np.sin(f * x)
+    return fx
 
 
 if __name__ == "__main__":
@@ -75,7 +77,9 @@ if __name__ == "__main__":
     x_set1 = x_set
     # x_set1.insert(0,a[0])
     x_set1.append(a[1])
-    piecel = piece_linear(x_set1,y_set1)
-    piecel.calculation(test_set,a[0],pace)
+    # piecel = piece_linear(x_set1,y_set1)
+    # piecel.calculation(test_set,a[0],pace)
+    hermitian = Hermitian(x_set1, y_set1)
+    hermitian.calculation(dy_set, test_set, a[0], pace)
 # print(a)1
 # print(args)
