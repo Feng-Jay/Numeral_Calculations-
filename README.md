@@ -14,7 +14,7 @@
 
 Just enter the `outcome.py` and run the code and give some input, then there will output the data and pictures.
 
-**You need input: **
+**You need input:**
 
 ```shell
 1.Interpolation Interval [a,b].
