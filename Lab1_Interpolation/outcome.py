@@ -18,7 +18,15 @@ def fx(x,*args):
     fx = c * np.sin(d * x) + e * np.cos(f * x)
     # print(fx)
     return fx
+def dfx(x,*args):
+    arg=args[0]
+    # print(arg)
+    c = arg[0]
+    d = arg[1]
+    e = arg[2]
+    f = arg[3]
 
+    fx = c*d * np.cos(d * x) - e * f * np.sin(f * x)
 
 
 if __name__ == "__main__":
@@ -30,6 +38,7 @@ if __name__ == "__main__":
     m = int(input("Please input the value m for test: "))
     x_set = [] # n+1个插值点
     y_set = [] # 插值点处y值
+    dy_set = [] # 导数集合
     test_set = [] #m个检测点
     interval = a[1] - a [0] #输入区间的长度
     pace = interval/n
@@ -38,6 +47,7 @@ if __name__ == "__main__":
     for i in range(n):
         x_set.append(a[0]+i*pace) #给定插值点x
         y_set.append(fx(x_set[i],args))
+        dy_set.append(dfx(x_set[i],args))
     # print(y_set)
     # print(x_set)
     # 获得所有插值点
@@ -60,6 +70,7 @@ if __name__ == "__main__":
     # newton.calculation(test_set)
     y_set1 = y_set
     y_set1.append(fx(a[1],args))
+    dy_set.append(dfx(a[1],args))
     # print(y_set1)
     x_set1 = x_set
     # x_set1.insert(0,a[0])

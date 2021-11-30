@@ -5,7 +5,6 @@ import numpy as np
 class piece_linear : 
     x = [] # 插值点横坐标
     y = [] # 插值点纵坐标
-    coefficient = [] # every linear function's lagrange coe
     outcome = [] 
 
     def __init__(self,x,y) : 
