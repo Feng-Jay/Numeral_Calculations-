@@ -33,7 +33,7 @@ class Newton :
                 outcome = outcome + temp * self.martix[j][j]
             self.outcome.append(outcome)
         
-        print(self.outcome)
+        # print(self.outcome)
 
 
         

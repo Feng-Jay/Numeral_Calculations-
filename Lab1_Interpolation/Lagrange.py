@@ -31,4 +31,4 @@ class Lagrange :
                     temp = temp * (x[i]-self.x[k]) 
                 outcome = outcome + self.y[j] * (temp/self.denominator[j])
             self.outcome.append(outcome)
-        print(self.outcome)
+        # print(self.outcome)

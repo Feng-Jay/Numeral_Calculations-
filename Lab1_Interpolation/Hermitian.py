@@ -17,4 +17,4 @@ class Hermitian :
                       + ((x[i]-self.x[temp+1])/(self.x[temp]-self.x[temp+1]))**2 * (x[i] - self.x[temp]) * d_set[temp]\
                       + ((x[i]-self.x[temp])/(self.x[temp+1]-self.x[temp]))**2 * (x[i] - self.x[temp+1]) * d_set[temp+1]
             self.outcome.append(outcome)
-        print(self.outcome)
+        # print(self.outcome)

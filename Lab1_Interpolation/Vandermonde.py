@@ -6,9 +6,10 @@ class Vandermonde_Martix :
     x = []
     y = []
     A = []
+    outcome = []
     def __init__(self, xn, x, y):
-        print(x)
-        print(y)
+        # print(x)
+        # print(y)
         # print(x_set)
         self.x = x
         self.y = y
@@ -28,10 +29,9 @@ class Vandermonde_Martix :
         y = np.array(self.y)
         #print("y: \n", y)
         self.A = np.linalg.solve(coefficient,y)
-        print(self.A)
+        # print(self.A)
 
     def function(self,x):
-        y=[]
         # x is the set of test dots.
         for i in range(len(x)):
             # for each test value
@@ -39,6 +39,5 @@ class Vandermonde_Martix :
             for j in range(self.xn):
                 # 这里是每个函数值
                 outcome = outcome + self.A[j]*(x[i]**j)
-            y.append(outcome)
-        return y
+            self.outcome.append(outcome)
 

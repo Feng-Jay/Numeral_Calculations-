@@ -22,6 +22,6 @@ class piece_linear :
             #for every x
             outcome = self.y[temp]*(x[i]-self.x[temp+1])/(self.x[temp]-self.x[temp+1])+self.y[temp+1]*(x[i]-self.x[temp])/(self.x[temp+1]-self.x[temp])
             self.outcome.append(outcome)
-        print(self.outcome)
+        # print(self.outcome)
 
 
