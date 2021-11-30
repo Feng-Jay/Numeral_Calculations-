@@ -1,6 +1,7 @@
 from Vandermonde import Vandermonde_Martix
 from Lagrange import Lagrange
 from Newton import Newton
+from piece_linear import piece_linear
 import numpy as np
 import math
 import random
@@ -44,18 +45,26 @@ if __name__ == "__main__":
         temp = random.uniform(a[0],a[1])
         test_set.append(temp)
     # 准备构造插值函数
+    standard = []
+    for i in range(m):
+        standard.append(fx(test_set[i],args))
+    print("fx=\n",standard)
     # vander=Vandermonde_Martix(n,x_set,y_set)
     # print("cal")
     # vander.calculation()
     # outcome1 = vander.function(test_set)
     # print("outcome1:\n",outcome1)
-    standard = []
-    for i in range(m):
-        standard.append(fx(test_set[i],args))
-    print("fx=\n",standard)
     # lagrange = Lagrange(x_set, y_set)
     # lagrange.calculation(test_set)
-    newton = Newton(x_set,y_set,pace)
-    newton.calculation(test_set)
+    # newton = Newton(x_set,y_set,pace)
+    # newton.calculation(test_set)
+    y_set1 = y_set
+    y_set1.append(fx(a[1],args))
+    # print(y_set1)
+    x_set1 = x_set
+    # x_set1.insert(0,a[0])
+    x_set1.append(a[1])
+    piecel = piece_linear(x_set1,y_set1)
+    piecel.calculation(test_set,a[0],pace)
 # print(a)1
 # print(args)
