@@ -2,6 +2,7 @@ from operator import le
 import numpy as np
 import random
 from Legendre import Legendre
+from least_square import Square
 from sympy.functions.special.polynomials import legendre
 import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif']=['SimHei'] #用来正常显示中文标签
@@ -27,53 +28,69 @@ if __name__ == "__main__":
     m = int(input("Please input the test_set numbers m: "))
 
     pace = (a[1] - a[0])/n
-
     x = []
     for i in range(n):
         x.append(a[0]+i*pace) 
-    
+    y = fx(c,x)
+         
     test_set = []
     test_set1 = []
-    for i in range(m):
+    for i in range(m): #普通的测试集合
         temp = random.uniform(a[0],a[1])
         test_set.append(temp)
     test_set.sort()
-    for i in range(m):
+    for i in range(m): #映射的测试集合
         temp = test_set[i]
         test_set1.append((1/(a[1]-a[0]))*(temp*2-a[0]-a[1]))
-    # print("test_case1:", test_set1)
     
     standard = []
-    standard = fx(c,test_set)
+    standard = fx(c,test_set) #原函数测试集对应结果
 
     legend = Legendre(a)
     legend.calculation(k,c)
-    print(legend.coeffi)
-    outcome1 = legend.cal_test(test_set1, k)
-    # print(outcome1)
+    outcome1 = legend.cal_test(test_set1, k)#计算结果
 
-
-
+    lsquare = Square(x,y)
+    lsquare.calculation(k) #计算系数
+    outcome2 = lsquare.outcome(test_set) #计算结果
 
     
-    outcome = 0
+    outcome_1 = 0
     for i in range(m):
-        outcome = outcome + abs(outcome1[i] - standard[i])
-    outcome = outcome/m
-    print("平均误差为: ", outcome)
+        outcome_1 = outcome_1 + abs(outcome1[i] - standard[i])
+    outcome_1 = outcome_1/m
+    print("最佳平方逼近的平均误差为: ", outcome_1)
+
+    outcome_2 = 0
+    for i in range(m):
+        outcome_2 = outcome_2 + abs(outcome2[i] - standard[i])
+    outcome_2 = outcome_2/m
+    print("最小二乘法的平均误差为: ", outcome_2)
 
 
 
     plt.figure(1)
     plt.subplot(1,2,1)
     plt.plot(test_set, outcome1,color='r')
-    plt.xlabel('逼近函数横坐标')
-    plt.ylabel('逼近函数值')
-    plt.title("逼近函数")
+    plt.xlabel('横坐标')
+    plt.ylabel('函数值')
+    plt.title('最佳平方逼近 k=%i' %k)
     plt.subplot(1,2,2)
     plt.plot(test_set, standard, color='b')
     plt.xlabel('横坐标')
     plt.ylabel('函数值')
     plt.title("标准函数fx")
 
+
+    plt.figure(2)
+    plt.subplot(1,2,1)
+    plt.plot(test_set, outcome2,color='r')
+    plt.xlabel('横坐标')
+    plt.ylabel('函数值')
+    plt.title('最小二乘法 k=%i' %k)
+    plt.subplot(1,2,2)
+    plt.plot(test_set, standard, color='b')
+    plt.xlabel('横坐标')
+    plt.ylabel('函数值')
+    plt.title("标准函数fx")
     plt.show()
