@@ -38,17 +38,20 @@ class romberg:
         diff = abs(self.standard - self.outcome)
         # print("误差为: ", diff)
         while diff > self.precision :
-            incre = 0
-            temp = []
+            self.outcome = 0
+            temp = 0
             self.h = self.h /2
             self.counter +=1
+            i = 0
+            self.x = []
+            while temp + self.h <= self.a[1] :
+                temp = self.a[0] + i*self.h
+                i += 1
+                self.x.append(temp)
+            # print(self.x)
             for i in range(0,len(self.x)-1):
-                temp.append(self.x[i])
-                temp.append(self.x[i]+self.h)
-                incre += self.fx(self.x[i]+self.h)
-            temp.append(self.a[1])
-            self.x = temp
-            self.outcome = (1/2) * self.outcome + self.h * incre
+                self.outcome += self.fx(self.x[i])+ self.fx(self.x[i+1])
+            self.outcome = (self.h/2) * self.outcome
             # 计算出T的二分结果
             self.table[self.counter][0] = self.outcome
             i = 1

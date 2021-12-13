@@ -47,4 +47,3 @@ if __name__ == "__main__":
 
     romberg1 =  romberg(outcome,h,a,x,y,constrain)
     romberg1.calculation()
-    
