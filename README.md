@@ -1,4 +1,4 @@
-# TJU's Numeral Calculation class's Lab
+# TJU's Numeral Calculation class Lab
 
 ## Lab 1：Interpolation
 
