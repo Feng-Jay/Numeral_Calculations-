@@ -17,7 +17,7 @@ B = np.array([-15,27,-23,0,-20,12,-7,7,10],dtype=np.float).reshape(-1,1)
 def Guass(X,K,E):
     global A,B
     X1 = np.array([0,0,0,0,0,0,0,0,0],dtype=np.float).reshape(-1,1)
-    for times in range(0,K):
+    for times in range(1,K+1):
         for i in range(0,len(A)):
             temp_1 = 0
             for x_i in range(0,i):
@@ -27,7 +27,8 @@ def Guass(X,K,E):
                 temp_2 +=X[x_i] * A[i][x_i]
             X1[i] = (B[i] - temp_1 -temp_2)/A[i][i]
         count = X1 - X
-        cout = max(np.maximum(count, -count))
+        cout = np.linalg.norm(np.abs(count),ord=np.inf)
+        # cout = max(np.maximum(count, -count))
         # print(cout)
         if cout < E:
             return times,X1,cout
@@ -48,10 +49,10 @@ if __name__ == "__main__":
     # print(K)
     E_temp = input("Please input the differ ϵ(Epsilon): ")
     E = float(E_temp)
-
+    print("")
     times, outcome_x,count = Guass(X_0,K,E)
-    print("diff = ",count)
-    print("Times={ti}, X=\n {x}".format(ti=times, x=outcome_x))
+    print("无穷范数为: \n",count)
+    print("迭代次数={ti}\n方程解X=\n {x}".format(ti=times, x=outcome_x.T))
 
     Answer = np.linalg.solve(A,B)
-    print("Answer is :\n",Answer)
+    print("标准解X :\n",Answer.T)

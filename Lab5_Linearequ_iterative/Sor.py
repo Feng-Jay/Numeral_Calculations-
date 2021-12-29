@@ -1,6 +1,8 @@
 import numpy as np
 import copy
 
+from numpy.lib.index_tricks import diag_indices
+
 A = np.array([
     [31,-13,0,0,0,-10,0,0,0],
     [-13,35,-9,0,-11,0,0,0,0],
@@ -20,7 +22,7 @@ def Sor(X,K,E,W):
     X_temp = copy.deepcopy(X)
     # print(X_temp)
     X1 = np.array([0,0,0,0,0,0,0,0,0],dtype=np.float).reshape(-1,1)
-    for times in range(0,K):
+    for times in range(1,K+1):
         for i in range(0,len(A)):
             temp_1 = 0
             for x_i in range(0,i):
@@ -30,7 +32,7 @@ def Sor(X,K,E,W):
                 temp_2 +=X_temp[x_i] * A[i][x_i]
             X1[i] = X_temp[i] + W*(B[i] - temp_1 -temp_2)/A[i][i]
         count = X1 - X_temp
-        cout = max(np.maximum(count, -count))
+        cout = np.linalg.norm(np.abs(count),ord=np.inf)
         # print(cout)
         if cout < E:
             return times,X1,cout
@@ -52,10 +54,18 @@ if __name__ == "__main__":
     E_temp = input("Please input the differ ϵ(Epsilon): ")
     E = float(E_temp)
 
-    # w = float(input("Please input the omiga: "))
+    w = float(input("Please input the omiga: "))
+    print("")
+    times, outcome_x,count = Sor(X_0,K,E,w)
+
+    print("迭代次数: {tim}".format(tim=times))
+    print("无穷范数为: {co}".format(co=count))
+    print("解X= \n",outcome_x.T)
+
     w =0
     steps = []
     outcome = []
+    diff = []
     for i in range(1,100):
         w = i/50
         # print(w)
@@ -63,15 +73,27 @@ if __name__ == "__main__":
         # print(X_0)
         steps.append(times)
         outcome.append(outcome_x)
+        diff.append(count)
         # print(count)
-    min_step = min(steps)
+    index = np.where(steps == np.min(steps))
+
+    index = index[0]
+    min_diff = 1
+    min_index = 0
+    for item in index:
+        if min_diff > diff[item]:
+            min_index = item
+            min_diff = diff[item]
+    
+    # print(min_index)
+    # print("w = ", index/50)
     print(steps)
-    print(min_step)
-    index = steps.index(min_step)
-    print("w = ", index/50)
-    print(outcome[index])
-        # print("diff = ",count)
-        # print("Times={ti}, X=\n {x}".format(ti=times, x=outcome_x))
+    print("所需最少迭代次数为: ")
+    print(steps[min_index])
+    print("最佳的w选值为: ", (min_index+1)/50)
+    print("无穷范数为:",min_diff)
+    print("解X为: ")
+    print(outcome[min_index].T)
 
     Answer = np.linalg.solve(A,B)
-    print("Answer is :\n",Answer)
+    print("标准解X :\n",Answer.T)
