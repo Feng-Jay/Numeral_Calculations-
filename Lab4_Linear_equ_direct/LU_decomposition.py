@@ -108,7 +108,7 @@ if __name__ == "__main__":
     # print(ran_mar)
     # print(ran_b)
     ans2 = np.linalg.solve(ran_mar,ran_b).T
-    print("标准答案为:")
+    print("标准答案为:")    
     print(ans2)
 
     outcome2 = Lu_decomposition(ran_mar,ran_b)
