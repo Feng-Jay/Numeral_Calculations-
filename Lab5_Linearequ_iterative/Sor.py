@@ -62,6 +62,8 @@ if __name__ == "__main__":
     print("无穷范数为: {co}".format(co=count))
     print("解X= \n",outcome_x.T)
 
+    print("<----------寻找最优w------------>")
+
     w =0
     steps = []
     outcome = []
